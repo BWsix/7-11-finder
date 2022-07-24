@@ -47,6 +47,9 @@ const Home: NextPage = () => {
         setAddress(() => getNearestStoreLocation(currentLocation));
       },
       (err) => {
+        if (err.PERMISSION_DENIED) {
+          alert("無法取得位置資訊，請開啟定位模式並重新載入頁面");
+        }
         alert(err.message);
       },
       { enableHighAccuracy: true }
